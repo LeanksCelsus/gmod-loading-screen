@@ -7,10 +7,14 @@
     <style>
         body {
             background: url('https://media.discordapp.net/attachments/1329245637874815100/1343204709627986003/image.png?ex=67bc6c5e&is=67bb1ade&hm=cb9418eacc06c7c901b71f7e3a104a441a850c6260a65cf573cdcb598b1f1d90&=&format=webp&quality=lossless&width=1211&height=676') no-repeat center center fixed;
-            background-size: cover;
+            background-size: contain; /* Permet d'afficher toute l'image sans la couper */
+            background-position: center;
+            background-color: black; /* Ajoute une couleur de fond si l'image ne couvre pas tout l'écran */
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
+            height: 100vh;
+            margin: 0;
         }
         h1 {
             margin-top: 20%;
@@ -35,14 +39,12 @@
             if (playPromise !== undefined) {
                 playPromise.then(() => {
                     console.log("Musique jouée automatiquement !");
-                    // Après un court délai, remet le volume normal
                     setTimeout(() => {
                         music.volume = 1.0;
                     }, 500);
                 }).catch(error => {
                     console.warn("Autoplay bloqué. Attente d'une interaction...");
                     
-                    // Dès que l'utilisateur bouge sa souris ou touche l'écran, on active la musique
                     const unlockAudio = () => {
                         music.play().then(() => {
                             console.log("Musique forcée après interaction !");
