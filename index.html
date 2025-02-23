@@ -6,22 +6,29 @@
     <title>Loading...</title>
     <style>
         body {
-            background: url('https://media.discordapp.net/attachments/1329245637874815100/1343204709627986003/image.png?ex=67bc6c5e&is=67bb1ade&hm=cb9418eacc06c7c901b71f7e3a104a441a850c6260a65cf573cdcb598b1f1d90&=&format=webp&quality=lossless&width=1211&height=676') no-repeat center center fixed;
-            background-size: contain; /* Permet d'afficher toute l'image sans la couper */
-            background-position: center;
-            background-color: black; /* Ajoute une couleur de fond si l'image ne couvre pas tout l'écran */
+            background: black; /* Fond noir pour éviter le vide */
             text-align: center;
             font-family: Arial, sans-serif;
             color: white;
             height: 100vh;
             margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        h1 {
-            margin-top: 20%;
+
+        /* Conteneur de l'image pour qu'elle garde sa taille normale */
+        .background-container {
+            width: 100%;
+            height: 100%;
+            background: url('https://media.discordapp.net/attachments/1329245637874815100/1343204709627986003/image.png?ex=67bc6c5e&is=67bb1ade&hm=cb9418eacc06c7c901b71f7e3a104a441a850c6260a65cf573cdcb598b1f1d90&=&format=webp&quality=lossless&width=1211&height=676') no-repeat center center;
+            background-size: contain; /* Affiche l'image en entier sans l'agrandir */
         }
     </style>
 </head>
 <body>
+
+    <div class="background-container"></div>
 
     <audio id="music" autoplay loop>
         <source src="https://files.catbox.moe/x6yivh.mp3" type="audio/mpeg">
@@ -32,7 +39,7 @@
         document.addEventListener("DOMContentLoaded", () => {
             let music = document.getElementById("music");
 
-            // Démarre la musique en mode silencieux au début (contourne le blocage)
+            // Démarre la musique en mode silencieux pour contourner le blocage
             music.volume = 0;
             let playPromise = music.play();
 
